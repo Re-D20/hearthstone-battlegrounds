@@ -1,0 +1,25 @@
+import json
+from common.schema import validate_state
+from common.models import GameState, PlayerState, MinionState, Phase
+
+def load_state_from_file(path: str) -> GameState:
+    with open(path, "r") as f:
+        raw = json.load(f)
+
+    validate_state(raw)
+
+    phase = Phase(raw["phase"])
+    players = []
+
+    for p in raw["players"]:
+        board = [
+            MinionState(id=m["id"], attack=m["attack"], health=m["health"])
+            for m in p["board"]
+        ]
+        players.append(PlayerState(id=p["id"], health=p["health"], board=board))
+
+    return GameState(phase=phase, players=players)
+
+def load_state_from_dict(raw: dict):
+    validate_state(raw)
+    return _build_state(raw)
