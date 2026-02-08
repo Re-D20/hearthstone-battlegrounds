@@ -1,6 +1,6 @@
-from common.schema import validate_state
-from server.validators import validate_intent
-from server.transitions import apply_intent
+from game.common.schema import validate_state
+from game.server.validators import validate_intent
+from game.server.transitions import apply_intent
 
 
 def process_intent(state, intent: dict):

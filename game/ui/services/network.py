@@ -1,8 +1,10 @@
+# game/ui/services/network.py
+
 import json
 import socket
 import threading
-from ui.core.event_bus import event_bus
-from ui.services.state_loader import load_state_from_dict
+from game.ui.core.event_bus import event_bus
+from game.ui.services.state_loader import load_state_from_dict
 
 
 class NetworkClient:

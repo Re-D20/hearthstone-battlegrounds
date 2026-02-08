@@ -1,0 +1,20 @@
+{
+  "phase": "RECRUIT",
+  "players": [
+    {
+      "id": "p1",
+      "health": 40,
+      "board": [
+        {"id": "m1", "attack": 3, "health": 2},
+        {"id": "m2", "attack": 5, "health": 4}
+      ]
+    },
+    {
+      "id": "p2",
+      "health": 37,
+      "board": [
+        {"id": "m3", "attack": 2, "health": 3}
+      ]
+    }
+  ]
+}

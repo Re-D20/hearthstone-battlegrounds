@@ -1,6 +1,5 @@
 import pygame
 
-
 class LogPanel:
     def __init__(self, rect):
         self.rect = pygame.Rect(rect)
@@ -8,7 +7,7 @@ class LogPanel:
         self.lines = []
 
     def set_logs(self, logs):
-        self.lines = logs[-6:]  # display last entries only
+        self.lines = logs[-6:]
 
     def render(self, surface):
         pygame.draw.rect(surface, (30, 30, 30), self.rect)

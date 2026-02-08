@@ -1,0 +1,43 @@
+Step 1 — Fix your Python UI code
+Fix all __init__ mistakes (def init → def __init__)
+
+Fix ScreenManager phase detection
+
+Fix state loader
+
+Make UI run offline using mock_state.json
+
+➡️ Result: You can open the game window and click “End Turn”
+
+............
+Step 2 — Complete the Python server
+Implement full state machine (Recruit → Combat → Recruit)
+
+Implement BUY, SELL, PLAY logic
+
+Implement combat resolution (simple version)
+
+Implement socket server
+
+Connect UI to server
+
+➡️ Result: You can play a simple loop with a real server.
+
+.......................
+
+Step 3 — Add missing features from GameClient.md
+Minion shop UI
+
+Drag & drop minions
+
+Board rendering
+
+Combat animations (simple)
+
+➡️ Result: It looks like a real Battlegrounds client.
+
+.......................
+Step 4 — Optional C++ server
+Only if you want it
+
+Python server is enough for now

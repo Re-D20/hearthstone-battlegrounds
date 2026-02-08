@@ -1,12 +1,15 @@
-from common.enums import Phase
-from server.intents import IntentType
+# game/server/validators.py
+
+from game.server.intents import IntentType
+from game.common.enums import Phase
+from game.server.state import ServerState
 
 
 class InvalidIntent(Exception):
     pass
 
 
-def validate_intent(intent: dict, state):
+def validate_intent(intent: dict, state: ServerState) -> IntentType:
     if "type" not in intent:
         raise InvalidIntent("Intent missing 'type'")
 
@@ -15,13 +18,9 @@ def validate_intent(intent: dict, state):
     except ValueError:
         raise InvalidIntent(f"Unknown intent type: {intent['type']}")
 
-    # Phase-based validation (from server.md philosophy)
-    if state.phase == Phase.COMBAT:
-        if intent_type != IntentType.END_TURN:
-            raise InvalidIntent("Only END_TURN allowed during COMBAT")
-
-    if state.phase == Phase.RECRUIT:
-        if intent_type == IntentType.BUY and "minion_id" not in intent:
-            raise InvalidIntent("BUY intent requires minion_id")
+    # Only allow END_TURN during COMBAT
+    if state.phase == Phase.COMBAT and intent_type != IntentType.END_TURN:
+        raise InvalidIntent("Only END_TURN allowed during COMBAT")
 
     return intent_type
+
