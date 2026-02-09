@@ -23,10 +23,11 @@ class RecruitScreen:
         self.state = state
         self.shop_slots = []
 
-        # Build shop UI
-        if hasattr(state.players[0], "shop"):
+        # Build shop UI from player 1's shop
+        p1 = state.players[0]
+        if hasattr(p1, "shop"):
             x = 50
-            for item in state.players[0].shop:
+            for item in p1.shop:
                 slot = ShopSlot(x, 300, 120, 80, item)
                 self.shop_slots.append(slot)
                 x += 140
@@ -41,9 +42,11 @@ class RecruitScreen:
             slot.handle_event(event)
 
 
+
     def render(self):
         title = self.font.render("RECRUIT PHASE", True, (200, 200, 200))
         self.screen.blit(title, (50, 50))
+        
         for slot in self.shop_slots:
             slot.render(self.screen)
 

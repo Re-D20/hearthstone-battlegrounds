@@ -16,8 +16,15 @@ def apply_intent(state: ServerState, intent_type: IntentType, intent_payload: di
             new_state.phase = Phase.COMBAT
 
         elif intent_type == IntentType.BUY:
-            # Add a dummy minion
-            m = Minion(id="DummyMinion", attack=3, health=2)
+            # Find minion in shop
+            card_id = intent_payload["minion_id"]
+            for item in player.shop:
+                if item["card_id"] == card_id:
+                    player.shop.remove(item)
+                    break
+                
+            # Add dummy minion to board
+            m = Minion(id=card_id, attack=3, health=2)
             player.board.append(m)
 
         elif intent_type == IntentType.SELL:

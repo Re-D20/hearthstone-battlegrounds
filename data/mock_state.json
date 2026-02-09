@@ -10,11 +10,9 @@
       "tavern_tier": 2,
       "gold": 7,
       "timer_ms": 30000,
-      "shop": [
-        {"slot": 0, "card_id": "BG_FRONT_001", "frozen": false, "sim_tier": 1},
-        {"slot": 1, "card_id": "BG_FRONT_006", "frozen": true, "sim_tier": 3},
-        {"slot": 2, "card_id": "BG_FRONT_009", "frozen": false, "sim_tier": 2}
-      ],
+      "shop": [ {"slot": 0, "card_id": "BG_FRONT_001", "frozen": false, "sim_tier": 1},
+                {"slot": 1, "card_id": "BG_FRONT_006", "frozen": true, "sim_tier": 3},
+                {"slot": 2, "card_id": "BG_FRONT_009", "frozen": false, "sim_tier": 2} ],
       "board": [
         {"slot": 0, "instance_id": "inst-100", "card_id": "BG_FRONT_009",
          "attack": 2, "health": 4, "keywords": ["Taunt"], "has_divine_shield": false, "reborn_used": false},

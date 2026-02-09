@@ -17,6 +17,7 @@ class Player:
     player_id: str
     health: int
     board: List[Minion] = field(default_factory=list)
+    shop: List[dict] = field(default_factory=list)
 
 
 @dataclass
@@ -26,10 +27,19 @@ class ServerState:
 
     @staticmethod
     def initial():
-        # Very simple starting state
-        p1 = Player(player_id="p1", health=40, board=[])
-        p2 = Player(player_id="p2", health=35, board=[])
+        p1 = Player(
+            player_id="p1",
+            health=40,
+            board=[],
+            shop=[
+                {"card_id": "BG_FRONT_001"},
+                {"card_id": "BG_FRONT_006"},
+                {"card_id": "BG_FRONT_009"}
+            ]
+        )
+        p2 = Player(player_id="p2", health=35, board=[], shop=[])
         return ServerState(phase=Phase.RECRUIT, players=[p1, p2])
+
 
     def to_payload(self) -> Dict:
         # Convert to JSON-friendly dict for the client
@@ -47,6 +57,7 @@ class ServerState:
                         }
                         for m in p.board
                     ],
+                    "shop": p.shop
                 }
                 for p in self.players
             ],

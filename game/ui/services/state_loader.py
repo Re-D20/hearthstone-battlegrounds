@@ -4,31 +4,43 @@ import json
 from game.common.models import GameState, PlayerState, MinionState
 from game.common.enums import Phase
 
+
 def load_state_from_file(path: str) -> GameState:
+    """Load JSON file and convert to GameState."""
     with open(path, "r") as f:
         raw = json.load(f)
     return load_state_from_dict(raw)
 
+
 def load_state_from_dict(raw: dict) -> GameState:
-    # If "phase" is missing, default to RECRUIT (for safety)
+    """Convert raw JSON dict into GameState."""
+
+    # Read phase safely
     phase_str = raw.get("phase", "RECRUIT")
     phase = Phase(phase_str)
 
     players = []
     for p in raw["players"]:
+
+        # Load board
         board = [
             MinionState(
-                id=m.get("card_id", m.get("id", "unknown")),
+                id=m.get("card_id", "unknown"),
                 attack=m.get("attack", 0),
                 health=m.get("health", 1),
             )
             for m in p.get("board", [])
         ]
+
+        # Load shop
+        shop = p.get("shop", [])
+
         players.append(
             PlayerState(
                 id=p.get("player_id", p.get("id", "unknown")),
                 health=p.get("health", 30),
                 board=board,
+                shop=shop,
             )
         )
 

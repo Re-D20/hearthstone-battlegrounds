@@ -18,3 +18,11 @@ class PlayerState:
 class GameState:
     phase: Phase
     players: List[PlayerState]
+
+@dataclass
+class PlayerState:
+    id: str
+    board: List[MinionState]
+    health: int
+    shop: list  # NEW
+
